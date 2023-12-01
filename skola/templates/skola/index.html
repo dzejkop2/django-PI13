@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Moja škola</h1>
+    {% if triedy%}
+    <h2>Triedy:</h2>
+    <ul>
+        {% for trieda in triedy %}
+        <li>{{trieda}}</li>
+        {% endfor %}
+    </ul> 
+    {%endif%}
+    {% if ucitelia%}
+    <h2>Učitelia:</h2>
+    <ul>
+        {% for ucitel in ucitelia %}
+        <li>{{ucitel}}</li>
+        {% endfor %}
+    </ul>    
+    {%endif%}
+    {% if studenti%}
+    <h2>Študenti:</h2>
+    <ul>
+        {% for student in studenti %}
+        <li>{{student}}</li>
+        {% endfor %}
+    </ul>
+    {%endif%}   
+</body> 
+</html>
