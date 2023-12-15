@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Obchodik</h1>
+    {%if products%}
+        <h2>Produkty</h2>
+        <ul>
+        {%for product in products%}
+            <li>
+                <h3>{{product.name}}</h3>
+                <p><strong>Kategoria:</strong> {{product.category}}</p>
+                <p><strong>Cena:</strong> {{product.cost}} €</p>
+                <p><strong>Popis produktu:</strong> {{product.text}}</p>
+            </li>
+        {%endfor%}
+        </ul>
+    {%endif%}
+    {%if orders %}
+        <h2>Objednávky</h2>
+        <ul>
+        {%for order in orders%}
+            <li>
+                <h3>{{order.product}}</h3>
+                <p>Zákazník: {{order.customer}}</p>
+                <p>Objednané dňa: {{order.date}}</p>
+            </li>
+        {%endfor%}
+        </ul>
+    {%endif%}
+    {%if categories %}
+        <h2>Kategorie</h2>
+        <ul>
+        {%for category in categories%}
+            <li>{{category}}</li>
+        {%endfor%}
+        </ul>
+    {%endif%}
+    {%if customers %}
+        <h2>Zákazníci</h2>
+        <ul>
+        {%for customer in customers%}
+            <li>{{customer}}</li>
+        {%endfor%}
+        </ul>
+    {%endif%}
+</body>
+</html>
