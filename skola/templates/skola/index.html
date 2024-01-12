@@ -1,12 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "skola/style.css" %}">
     <title>Document</title>
 </head>
 <body>
-    <h1>Moja škola</h1>
+    <header>
+        <h1>Moja škola</h1>
+    </header>
     {% if triedy%}
     <h2>Triedy:</h2>
     <ul>
@@ -31,5 +35,6 @@
         {% endfor %}
     </ul>
     {%endif%}   
+    <img src="{% static "skola/skola.jpg" %}" alt="skola" title="skola" width="300">
 </body> 
 </html>
