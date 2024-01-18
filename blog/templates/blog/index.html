@@ -8,36 +8,74 @@
     <title>Môj Blog</title>
 </head>
 <body>
-    <h1>Môj Blog</h1>
-    {%if posts%}
-        <h2>Posty</h2>
+    <header>
+        {% if posts%}
+            <h1><a href="./">E-Shop</a></h1>
+        {% else %}
+            <h1><a href="../">E-Shop</a></h1>
+        {% endif %}
         <ul>
-        {%for post in posts%}
-            <li>
-                <h3>{{post.name}}</h3>
-                <p><strong>Datum vytvorenia:</strong> {{post.create_date}}, <strong>Datum publikacie:</strong> {{post.publish_date}}</p>
-                <p><strong>Autor:</strong> {{post.author.nick}}</p>
-                <p><strong>Kategoria:</strong> {{post.category}}</p>
-                <p>{{post.text}}</p>
-            </li>
-        {%endfor%}
+        {% if posts%}
+            <li><a href="./authors/">Autori</a></li>
+            <li><a href="./categories/">Kategórie</a></li>
+        {% else %}
+            <li><a href="../authors/">Autori</a></li>
+            <li><a href="../categories/">Kategórie</a></li>
+        {%endif%}
         </ul>
-    {%endif%}
-    {%if authors %}
-        <h2>Užívatelia</h2>
-        <ul>
-        {%for author in authors%}
-            <li>{{author}}</li>
-        {%endfor%}
-        </ul>
-    {%endif%}
-    {%if categories %}
-        <h2>Kategórie</h2>
-        <ul>
-        {%for category in categories%}
-            <li>{{category}}</li>
-        {%endfor%}
-        </ul>
-    {%endif%}
+    </header>
+    <main>
+        <div class="main_page">
+            {%if posts%}
+                <h1>Posty</h1>
+                <div class="posty">
+                    {%for post in posts%}
+                        <div class="post">
+                            <h3>{{post.name}}</h3>
+                            <img src="{% static "blog/post.png" %}" alt="Post" title="Post" width="350">
+                            <p><strong>Datum vytvorenia:</strong> {{post.create_date}}</p>
+                            <p><strong>Datum publikacie:</strong> {{post.publish_date}}</p>
+                            <p><strong>Autor:</strong> {{post.author.nick}}</p>
+                            <p><strong>Kategoria:</strong> {{post.category}}</p>
+                            <p>{{post.text}}</p>
+                        </div>
+                    {%endfor%}
+                </div>
+            {%endif%}
+            {%if authors %}
+                <h1>Autori</h1>
+                <div class="other">
+                    <div class="half">
+                        <ul>
+                        {%for author in authors%}
+                            <li>{{author.nick}} - {{author.name}} {{author.surname}}</li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <div class="half">
+                        <img src="{% static "blog/autor.jpg" %}" alt="Autor" title="Autor" width="400">
+                    </div>
+                </div>
+            {%endif%}
+            {%if categories %}
+                <h1>Kategórie</h1>
+                <div class="other">
+                    <div class="half">
+                        <ul>
+                        {%for category in categories%}
+                            <li>{{category}}</li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <div class="half">
+                        <img src="{% static "blog/blog.jpg" %}" alt="Blog" title="Blog" width="400">
+                    </div>
+                </div>
+            {%endif%}
+        </div>
+    </main>
+    <footer>
+        <p>&copy;Jakub Geleta</p>
+    </footer>
 </body>
 </html>
