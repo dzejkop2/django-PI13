@@ -1,52 +1,96 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static "shop/style.css" %}">
+    <title>E-Shop</title>
 </head>
 <body>
-    <h1>Obchodik</h1>
-    {%if products%}
-        <h2>Produkty</h2>
-        <ul>
-        {%for product in products%}
-            <li>
-                <h3>{{product.name}}</h3>
-                <p><strong>Kategoria:</strong> {{product.category}}</p>
-                <p><strong>Cena:</strong> {{product.cost}} €</p>
-                <p><strong>Popis produktu:</strong> {{product.text}}</p>
-            </li>
-        {%endfor%}
-        </ul>
-    {%endif%}
-    {%if orders %}
-        <h2>Objednávky</h2>
-        <ul>
-        {%for order in orders%}
-            <li>
-                <h3>{{order.product}}</h3>
-                <p>Zákazník: {{order.customer}}</p>
-                <p>Objednané dňa: {{order.date}}</p>
-            </li>
-        {%endfor%}
-        </ul>
-    {%endif%}
-    {%if categories %}
-        <h2>Kategorie</h2>
-        <ul>
-        {%for category in categories%}
-            <li>{{category}}</li>
-        {%endfor%}
-        </ul>
-    {%endif%}
-    {%if customers %}
-        <h2>Zákazníci</h2>
-        <ul>
-        {%for customer in customers%}
-            <li>{{customer}}</li>
-        {%endfor%}
-        </ul>
-    {%endif%}
+    <header>
+        {% if products%}
+            <h1><a href="./">E-Shop</a></h1>
+        {% else %}
+            <h1><a href="../">E-Shop</a></h1>
+        {%endif%}
+        <div class="links">
+            <ul>
+                {% if products%}
+                    <li><a href="./orders/">Objednávky</a></li>
+                    <li><a href="./categories/">Kategórie</a></li>
+                    <li><a href="./customers/">Zákazníci</a></li>
+                {% else %}
+                    <li><a href="../orders/">Objednávky</a></li>
+                    <li><a href="../categories/">Kategórie</a></li>
+                    <li><a href="../customers/">Zákazníci</a></li>
+                {%endif%}
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="main_page">
+            {%if products%}
+                <h1>Produkty</h1>
+                <div class="produkty">
+                    {%for product in products%}
+                        <div class="produkt">
+                            <img src="{% static "shop/produkt.png" %}" alt="Produkt" title="Produkt" width="350">
+                            <h3>{{product.name}}</h3>
+                            <p><strong>Kategória:</strong> {{product.category}}</p>
+                            <p><strong>Cena:</strong> {{product.cost}} €</p>
+                            <p><strong>Popis produktu:</strong> {{product.text}}</p>
+                        </div>
+                    {%endfor%}
+                </div>
+            {%endif%}
+            {%if orders %}
+                <h1>Objednávky</h1>
+                <div class="produkty">
+                    {%for order in orders%}
+                        <div class="produkt">
+                            <img src="{% static "shop/order.jpg" %}" alt="Objednavka" title="Objednavka" width="350">
+                            <h3>{{order.product.name}}, {{order.product.cost}} €</h3>
+                            <p><strong>Zákazník</strong>: {{order.customer}}</p>
+                            <p><strong>Objednané dňa</strong>: {{order.date}}</p>
+                        </div>
+                    {%endfor%}
+                </div>
+            {%endif%}
+            {%if categories %}
+                <h1>Kategórie</h1>
+                <div class="other">
+                    <div class="half">
+                        <ul>
+                        {%for category in categories%}
+                            <li>{{category}}</li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <div class="half">
+                        <img src="{% static "shop/kategorioa.jpg" %}" alt="Kategória" title="Kategória" width="350">
+                    </div>
+                </div>
+            {%endif%}
+            {%if customers %}
+                <h1>Zákazníci</h1>
+                <div class="other">
+                    <div class="half">
+                        <ul>
+                        {%for customer in customers%}
+                            <li>{{customer}}</li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <div class="half">
+                        <img src="{% static "shop/zakaznik.jpg" %}" alt="Zákazník" title="Zákazník" width="350">
+                    </div>
+                </div>
+            {%endif%}
+        </div>
+    </main>
+    <footer>
+        <p>&copy;Jakub Geleta</p>
+    </footer>
 </body>
 </html>
