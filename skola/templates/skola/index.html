@@ -9,24 +9,13 @@
 <body>
     <header>
         <div class="header_left">
-            {% if triedy and studenti and ucitelia%}
-                <h1><a href="./">Naša škola</a></h1>
-            {% else %}
-                <h1><a href="../">Naša škola</a></h1>
-            {%endif%}
-            
+            <h1><a href="{%url "skola"%}">Naša škola</a></h1>
         </div>
         <div class="header_right">
             <ul>
-                {% if triedy and studenti and ucitelia%}
-                    <li><a href="./ucitelia/">Náši učitelia</a></li>
-                    <li><a href="./studenti/">Naši žiaci</a></li>
-                    <li><a href="./triedy/">Naše triedy</a></li>
-                {% else %}
-                    <li><a href="../ucitelia/">Náši učitelia</a></li>
-                    <li><a href="../studenti/">Naši žiaci</a></li>
-                    <li><a href="../triedy/">Naše triedy</a></li>
-                {%endif%}
+                <li><a href="{%url "ucitelia"%}">Náši učitelia</a></li>
+                <li><a href="{%url "studenti"%}">Naši žiaci</a></li>
+                <li><a href="{%url "triedy"%}">Naše triedy</a></li>
 
             </ul>
         </div>
@@ -46,7 +35,7 @@
                 <h2>Naše triedy:</h2>
                 <ul>
                     {% for trieda in triedy %}
-                    <li>{{trieda}}</li>
+                    <li><a href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></li>
                     {% endfor %}
                 </ul> 
                 {%endif%}

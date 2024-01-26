@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "skola/style.css" %}">
+    <title>Naša škola</title>
+</head>
+<body>
+    <header>
+        <div class="header_left">
+            {%if trieda%}
+            <h1>{{trieda}}</h1>
+            {%endif%}
+        </div>
+        <div class="header_right">
+            
+        </div>
+    </header>
+    <main>
+        <div class="main_page">
+            <div class="half">
+                <h2>Triedny učiteľ:</h2>
+                <ul>
+                    <li>{{ucitel}}</li>
+                </ul>    
+                <h2>Naši študenti:</h2>
+                <ul>
+                    {% for student in studenti %}
+                    <li>{{student}}</li>
+                    {% endfor %}
+                </ul>   
+            </div>
+            <div class="half">
+                    <img src="{% static "skola/trieda.jpg" %}" alt="Trieda" title="Trieda" width="500">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy;Jakub Geleta</p>
+    </footer>
+</body> 
+</html>
