@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "shop/style.css" %}">
+    <title>E-Shop</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{%url "products"%}">E-Shop</a></h1>
+        <div class="links">
+            <ul>
+                <li><a href="{%url "orders"%}">Objednávky</a></li>
+                <li><a href="{%url "categories"%}">Kategórie</a></li>
+                <li><a href="{%url "customers"%}">Zákazníci</a></li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="main_page">
+            <h1>{{produkt.name}}</h1>
+            <p><strong>Kategória:</strong> {{produkt.category}}</p>
+            <p><strong>Cena:</strong> {{produkt.cost}} €</p>
+            <p><strong>Popis:</strong> {{produkt.text}}</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy;Jakub Geleta</p>
+    </footer>
+</body>
+</html>

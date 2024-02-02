@@ -15,7 +15,7 @@ class Product(models.Model):
     text = models.CharField(max_length=255)
     
     def __str__(self):
-        return f"{self.name} {self.cost}"
+        return f"{self.name}"
     
 class Customer(models.Model):
     name = models.CharField(max_length=20)

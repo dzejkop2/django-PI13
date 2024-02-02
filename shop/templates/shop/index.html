@@ -8,22 +8,12 @@
 </head>
 <body>
     <header>
-        {% if products%}
-            <h1><a href="./">E-Shop</a></h1>
-        {% else %}
-            <h1><a href="../">E-Shop</a></h1>
-        {%endif%}
+        <h1><a href="{%url "products"%}">E-Shop</a></h1>
         <div class="links">
             <ul>
-                {% if products%}
-                    <li><a href="./orders/">Objednávky</a></li>
-                    <li><a href="./categories/">Kategórie</a></li>
-                    <li><a href="./customers/">Zákazníci</a></li>
-                {% else %}
-                    <li><a href="../orders/">Objednávky</a></li>
-                    <li><a href="../categories/">Kategórie</a></li>
-                    <li><a href="../customers/">Zákazníci</a></li>
-                {%endif%}
+                <li><a href="{%url "orders"%}">Objednávky</a></li>
+                <li><a href="{%url "categories"%}">Kategórie</a></li>
+                <li><a href="{%url "customers"%}">Zákazníci</a></li>
             </ul>
         </div>
     </header>
@@ -31,14 +21,29 @@
         <div class="main_page">
             {%if products%}
                 <h1>Produkty</h1>
+                <ul>
+                    {%for category in categories%}
+                        <li><a href="{% url "category" category=category %}">{{category}}</a></li>
+                    {%endfor%}
+                </ul>
                 <div class="produkty">
                     {%for product in products%}
                         <div class="produkt">
                             <img src="{% static "shop/produkt.png" %}" alt="Produkt" title="Produkt" width="350">
-                            <h3>{{product.name}}</h3>
+                            <h3><a href="{% url "product" product=product %}">{{product.name}}</a></h3>
                             <p><strong>Kategória:</strong> {{product.category}}</p>
                             <p><strong>Cena:</strong> {{product.cost}} €</p>
-                            <p><strong>Popis produktu:</strong> {{product.text}}</p>
+                        </div>
+                    {%endfor%}
+                </div>
+            {%endif%}
+            {%if category_products%}
+                <h1>Produkty</h1>
+                <div class="produkty">
+                    {%for product in category_products%}
+                        <div class="produkt">
+                            <img src="{% static "shop/produkt.png" %}" alt="Produkt" title="Produkt" width="350">
+                            <h3><a href="{% url "product" product=product %}">{{product}}</a></h3>
                         </div>
                     {%endfor%}
                 </div>
@@ -56,13 +61,13 @@
                     {%endfor%}
                 </div>
             {%endif%}
-            {%if categories %}
+            {%if categories and not products%}
                 <h1>Kategórie</h1>
                 <div class="other">
                     <div class="half">
                         <ul>
                         {%for category in categories%}
-                            <li>{{category}}</li>
+                            <li><a href="{% url "category" category=category %}">{{category}}</a></li>
                         {%endfor%}
                         </ul>
                     </div>
