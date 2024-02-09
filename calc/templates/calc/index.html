@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulačka</title>
+</head>
+<body>
+    <h1>Kalkulačka</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="cislo1">
+        <br>
+        <select name="operator">
+            <option value="+">plus</option>
+            <option value="-">minus</option>
+            <option value="*">krat</option>
+            <option value="/">deleno</option>
+        </select>
+        <br>
+        <input type="text" name="cislo2">
+        <br>
+        <input type="submit">
+    </form>
+    {%if vysledok or vysledok == "0"%}
+    <h2>{{cislo1}} {{operator}} {{cislo2}} = {{vysledok}}</h2>
+    {%endif%}
+    
+</body>
+</html>
