@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testy</title>
+</head>
+<body>
+    <h1>Testy</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>{{priklad.a}} {{priklad.operator}} {{priklad.b}} = </p><input type="text" name="vysledok">
+        <br>
+        <input type="hidden" name="priklad_vysledok" value="{{priklad.vysledok}}">
+        <input type="submit">
+    </form>    
+    {% if test %}
+    <h3>{{test}}</h3>
+    {% endif %}
+    {% if vysledok %}
+    <h3>{{vysledok}}</h3>
+    {% endif %}
+</body>
+</html>
