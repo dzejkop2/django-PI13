@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from . models import *
+import math
 
 def calc(request):
     if request.method == "GET":
@@ -19,9 +20,9 @@ def calc(request):
         elif operator == "-":
             vysledok = a - b
         elif operator == "*":
-            vysledok = a * b
+            vysledok = round(a * b, 2)
         elif operator == "/" and b != 0:
-            vysledok = a / b
+            vysledok = round(a / b, 2)
         else:
             vysledok = "error"
             return render(request, "calc/index.html", {"vysledok":vysledok, "cislo1":a, "cislo2":b, "operator":operator})

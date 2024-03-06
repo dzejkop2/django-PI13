@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "calc/style.css" %}">
     <title>Kalkulačka</title>
 </head>
 <body>
@@ -22,7 +24,7 @@
         <input type="submit">
     </form>
     {%if vysledok or vysledok == "0"%}
-    <h2>{{cislo1}} {{operator}} {{cislo2}} = {{vysledok}}</h2>
+    <h3>{{cislo1}} {{operator}} {{cislo2}} = {{vysledok}}</h3>
     {%endif%}
     
 </body>

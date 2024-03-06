@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "testy/style.css" %}">
     <title>Testy</title>
 </head>
 <body>
@@ -11,11 +13,14 @@
         <p>{{priklad.a}} {{priklad.operator}} {{priklad.b}} = </p><input type="text" name="vysledok">
         <br>
         <input type="hidden" name="priklad_vysledok" value="{{priklad.vysledok}}">
+        <input type="hidden" name="current_score" value="{{current_score}}">
         <input type="submit">
     </form>    
     {% if test %}
     <h3>{{test}}</h3>
     {% endif %}
+    <h3>Current Score: {{current_score}}</h3>
+    <h3>High Score: {{high_score}}</h3>
     {% if vysledok %}
     <h3>{{vysledok}}</h3>
     {% endif %}
