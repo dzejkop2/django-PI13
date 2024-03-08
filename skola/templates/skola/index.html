@@ -1,68 +1,33 @@
-{% load static %}
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "skola/style.css" %}">
-    <title>Naša škola</title>
-</head>
-<body>
-    <header>
-        <div class="header_left">
-            <h1><a href="{%url "skola"%}">Naša škola</a></h1>
-        </div>
-        <div class="header_right">
-            <ul>
-                <li><a href="{%url "ucitelia"%}">Náši učitelia</a></li>
-                <li><a href="{%url "studenti"%}">Naši žiaci</a></li>
-                <li><a href="{%url "triedy"%}">Naše triedy</a></li>
-
-            </ul>
-        </div>
-    </header>
-    <main>
-        <div class="main_page">
-            <div class="half">
-                {% if ucitelia%}
-                <h2>Naši učitelia:</h2>
-                <ul>
-                    {% for ucitel in ucitelia %}
-                    <li>{{ucitel}}</li>
-                    {% endfor %}
-                </ul>    
-                {%endif%}
-                {% if triedy%}
-                <h2>Naše triedy:</h2>
-                <ul>
-                    {% for trieda in triedy %}
-                    <li><a href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></li>
-                    {% endfor %}
-                </ul> 
-                {%endif%}
-                {% if studenti%}
-                <h2>Naši študenti:</h2>
-                <ul>
-                    {% for student in studenti %}
-                    <li>{{student}}</li>
-                    {% endfor %}
-                </ul>
-                {%endif%}   
-            </div>
-            <div class="half">
-                {% if triedy and studenti and ucitelia %}
-                    <img src="{% static "skola/school.jpg" %}" alt="Škola" title="Škola" width="500">
-                {% elif triedy %}
-                    <img src="{% static "skola/trieda.jpg" %}" alt="Trieda" title="Trieda" width="500">
-                {% elif studenti %}
-                    <img src="{% static "skola/student.jpg" %}" alt="Študent" title="Študent" width="500">
-                {% elif ucitelia %}
-                    <img src="{% static "skola/ucitel.jpg" %}" alt="Učiteľ" title="Učiteľ" width="500">
-                {%endif%}
-            </div>
-        </div>
-    </main>
-    <footer>
-        <p>&copy;Jakub Geleta</p>
-    </footer>
-</body> 
-</html>
+{% extends "base.html" %}
+{% block content %}    
+    {% if ucitelia%}
+    <div class="container">
+    <h2>Naši učitelia:</h2>
+    <ul class="list-group">
+        {% for ucitel in ucitelia %}
+        <li class="list-group-item">{{ucitel}}</li>
+        {% endfor %}
+    </ul>
+    </div>    
+    {%endif%}
+    {% if triedy%}
+    <div class="container">
+    <h2>Naše triedy:</h2>
+    <ul class="list-group">
+        {% for trieda in triedy %}
+        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></li>
+        {% endfor %}
+    </ul> 
+    </div>
+    {%endif%}
+    {% if studenti%}
+    <div class="container">
+    <h2>Naši študenti:</h2>
+    <ul class="list-group">
+        {% for student in studenti %}
+        <li class="list-group-item">{{student}}</li>
+        {% endfor %}
+    </ul>
+    </div>
+    {%endif%}
+{% endblock  %}
