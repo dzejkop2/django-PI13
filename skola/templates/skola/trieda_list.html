@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
     {%if trieda%}
-    <h2>Trieda: {{trieda}}</h2>
+    <h2>Trieda: <a class="link-underline link-underline-opacity-0" href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></h2>
     {%endif%}
-    <h3>Triedny učiteľ: {{ucitel}}</h3>
+    <h3>Triedny učiteľ: <a class="link-underline link-underline-opacity-0" href="{% url "ucitel" ucitel=id %}">{{ucitel}}</a></h3>
     <h3>Študenti:</h3>
     <ul class="list-group">
         {% for student in studenti %}
-        <li class="list-group-item">{{student}}</li>
+        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "student" student=student.id %}">{{student.meno}} {{student.priezvisko}}</li>
         {% endfor %}
     </ul>   
 {% endblock %}

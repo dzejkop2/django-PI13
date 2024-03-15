@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>{{ucitel}}</h2>
+    {%if trieda%}
+    <h2>Trieda: <a class="link-underline link-underline-opacity-0" href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></h2>
+    {%endif%}
+{% endblock %}

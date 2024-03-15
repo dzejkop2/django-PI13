@@ -5,7 +5,7 @@
     <h2>Naši učitelia:</h2>
     <ul class="list-group">
         {% for ucitel in ucitelia %}
-        <li class="list-group-item">{{ucitel}}</li>
+        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "ucitel" ucitel=ucitel.id %}">{{ucitel}}</a></li>
         {% endfor %}
     </ul>
     </div>    
@@ -25,7 +25,7 @@
     <h2>Naši študenti:</h2>
     <ul class="list-group">
         {% for student in studenti %}
-        <li class="list-group-item">{{student}}</li>
+        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "student" student=student.id %}">{{student}}</a></li>
         {% endfor %}
     </ul>
     </div>
