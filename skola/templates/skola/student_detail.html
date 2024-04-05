@@ -1,10 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>{{student}}</h2>
+<header>
+    {% if student %}
+    <h1>Student: {{student.meno}} {{student.priezvisko}}</h1>
+    {% endif %}
+</header>
+<div class="container">
+    
     {%if trieda%}
-    <h2>Trieda: <a class="link-underline link-underline-opacity-0" href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></h2>
+    <p> <strong>Trieda: </strong> <a href="{% url 'trieda' trieda=trieda %}" class="link-offset-2 link-underline link-underline-opacity-50">{{trieda}}</a> </p>
     {%endif%}
-    {%if triedny%}
-    <h2>Triedny: <a class="link-underline link-underline-opacity-0" href="{% url "ucitel" ucitel=id %}">{{triedny}}</a></h2>
+
+    {%if triedny_ucitel%}
+    <p> <strong>Triedny ucitel: </strong> <a href="{% url 'ucitel' ucitel=triedny_ucitel.id %}" class="link-offset-2 link-underline link-underline-opacity-50">{{triedny_ucitel.titul}} {{triedny_ucitel.meno}} {{triedny_ucitel.priezvisko}}</a> </p>
     {%endif%}
-{% endblock %}
+
+    {%if kruzky%}
+            <h2>Kruzky:</h2>
+            <ul class='list-group'>
+                {% for kruzok in kruzky %}
+                <li class='list-group-item'><a href="{% url 'kruzok' kruzok=kruzok.skratka %}" class="link-offset-2 link-underline link-underline-opacity-50">{{kruzok.nazov}}</a></li>
+                {% endfor %}
+            </ul>
+            {%endif%}
+    
+</div>
+{% endblock content %}

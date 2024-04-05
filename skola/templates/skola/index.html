@@ -1,33 +1,46 @@
 {% extends "base.html" %}
-{% block content %}    
-    {% if ucitelia%}
+{% block content %}
     <div class="container">
-    <h2>Naši učitelia:</h2>
-    <ul class="list-group">
-        {% for ucitel in ucitelia %}
-        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "ucitel" ucitel=ucitel.id %}">{{ucitel}}</a></li>
-        {% endfor %}
-    </ul>
-    </div>    
-    {%endif%}
-    {% if triedy%}
-    <div class="container">
-    <h2>Naše triedy:</h2>
-    <ul class="list-group">
-        {% for trieda in triedy %}
-        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "trieda" trieda=trieda %}">{{trieda}}</a></li>
-        {% endfor %}
-    </ul> 
+        <div>
+            {% if triedy %}
+            <h2>Triedy:</h2>
+            <ul class='list-group mb-4'>
+                {% for trieda in triedy %}
+                <li class='list-group-item'><a href="{% url 'trieda' trieda=trieda %}" class="link-offset-2 link-underline link-underline-opacity-50">{{trieda}}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {%if ucitelia%}
+            <h2>Ucitelia:</h2>
+            <ul class='list-group mb-4'>
+                {% for ucitel in ucitelia %}
+                <li class='list-group-item'><a href="{% url 'ucitel' ucitel=ucitel.id %}" class="link-offset-2 link-underline link-underline-opacity-50">{{ucitel}}</a></li>
+                {% endfor %}
+            </ul>
+            {%endif%}
+            {%if studenti%}
+            <h2>Studenti:</h2>
+            <ul class='list-group'>
+                {% for student in studenti %}
+                <li class='list-group-item'><a href="{% url 'student' student=student.id %}" class="link-offset-2 link-underline link-underline-opacity-50">{{student}}</a></li>
+                {% endfor %}
+            </ul>
+            {%endif%}
+            {% if kruzky %}
+            <h2>Kruzky:</h2>
+            <ul class='list-group mb-4'>
+                {% for kruzok in kruzky %}
+                <li class='list-group-item'><a href="{% url 'kruzok' kruzok=kruzok.skratka %}" class="link-offset-2 link-underline link-underline-opacity-50">{{kruzok.nazov}}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% comment %} {% if triedy and ucitelia and studenti %}
+        <div class="obrazok">
+        {% else %}
+        <div>
+        {% endif %}
+            <img src="{% static 'skola/skola.jpg' %}" alt="moderna_skola" title="moderná škola" width="468" height="312">
+        </div> {% endcomment %}
     </div>
-    {%endif%}
-    {% if studenti%}
-    <div class="container">
-    <h2>Naši študenti:</h2>
-    <ul class="list-group">
-        {% for student in studenti %}
-        <li class="list-group-item"><a class="link-underline link-underline-opacity-0" href="{% url "student" student=student.id %}">{{student}}</a></li>
-        {% endfor %}
-    </ul>
-    </div>
-    {%endif%}
-{% endblock  %}
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<header>
+    {% if kruzok %}
+    <h1>Kruzok: {{kruzok.nazov}}</h1>
+    {% endif %}
+</header>
+<div class="container">
+    
+    {%if ucitel%}
+    <p> <strong>Ucitel: </strong> <a href="{% url 'ucitel' ucitel=ucitel.id %}" class="link-offset-2 link-underline link-underline-opacity-50">{{ucitel.titul}} {{ucitel.meno}} {{ucitel.priezvisko}}</a> </p>
+    {%endif%}
+
+    {%if studenti%}
+            <h2>Studenti:</h2>
+            <ul class='list-group'>
+                {% for student in studenti %}
+                <li class='list-group-item'><a href="{% url 'student' student=student.id %}" class="link-offset-2 link-underline link-underline-opacity-50">{{student.meno}} {{student.priezvisko}}</a></li>
+                {% endfor %}
+            </ul>
+            {%endif%}
+    
+</div>
+{% endblock content %}
