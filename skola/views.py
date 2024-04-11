@@ -36,13 +36,18 @@ def student_detail(request, student):
     return render(request, 'skola/student_detail.html', {'student': student, 'trieda': trieda, 'triedny_ucitel': triedny_ucitel, 'kruzky':kruzok})
 
 def ucitel_detail(request, ucitel):
-    ucitel = Ucitel.objects.get(id=ucitel)
-    kruzok = Kruzok.objects.filter(ucitel=ucitel)
-    if ucitel.trieda:
-        trieda = Trieda.objects.get(nazov=ucitel.trieda)
+    ucitel_obj = Ucitel.objects.get(id=ucitel)
+    if ucitel_obj.trieda:
+        trieda = Trieda.objects.get(nazov=ucitel_obj.trieda)
     else:
         trieda = 'nie je triedny ucitel'
-    return render(request, 'skola/ucitel_detail.html', {'ucitel': ucitel, 'trieda': trieda, 'kruzok':kruzok})
+    
+    try:
+        kruzok = Kruzok.objects.get(ucitel=ucitel_obj)
+    except:
+        return render(request, 'skola/ucitel_detail.html', {'ucitel': ucitel_obj, 'trieda': trieda})
+    else:
+        return render(request, 'skola/ucitel_detail.html', {'ucitel': ucitel_obj, 'trieda': trieda, 'kruzok':kruzok})
 
 def vypis_kruzky(request):
     kruzky = Kruzok.objects.all().order_by('nazov')

@@ -34,7 +34,7 @@ class Kruzok(models.Model):
     ucitel = models.ForeignKey(Ucitel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.skratka} {self.nazov}'
+        return f'{self.skratka} {self.nazov} {self.ucitel}'
     
     class Meta:
         verbose_name = "Kruzok"
