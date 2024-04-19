@@ -14,6 +14,9 @@
     {%if triedny_ucitel%}
     <p> <strong>Triedny ucitel: </strong> <a href="{% url 'ucitel' ucitel=triedny_ucitel.id %}" class="link-offset-2 link-underline link-underline-opacity-50">{{triedny_ucitel.titul}} {{triedny_ucitel.meno}} {{triedny_ucitel.priezvisko}}</a> </p>
     {%endif%}
+    <p><strong>Narodenie: </strong> {{student.narodenie}}</p>
+    <p><strong>Bydlisko: </strong> {{student.ulica}}, {{student.psc}}, {{student.obec}}</p>
+
 
     {%if kruzky%}
             <h2>Kruzky:</h2>

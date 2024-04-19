@@ -14,5 +14,9 @@
     {%if kruzok%}
     <p> <strong>Kruzok: </strong> <a href="{% url 'kruzok' kruzok=kruzok.skratka %}" class="link-offset-2 link-underline link-underline-opacity-50">{{kruzok.nazov}}</a> </p>
     {%endif%}
+
+    <p><strong>Narodenie: </strong> {{ucitel.narodenie}}</p>
+    <p><strong>Bydlisko: </strong> {{ucitel.ulica}}, {{ucitel.psc}}, {{ucitel.obec}}</p>
+
 </div>
 {% endblock content %}
