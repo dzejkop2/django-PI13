@@ -45,8 +45,8 @@ def get_vek(trieda_temp):
 
 def get_date(vek):
     today = datetime.date.today()
-    start_date = datetime.date(today.year - vek, 1, 1)
-    end_date   = datetime.date(today.year - vek, 12, 31)
+    start_date = datetime.date(today.year - vek - 1, 9, 1)
+    end_date   = datetime.date(today.year - vek, 8, 31)
     num_days   = (end_date - start_date).days
     rand_days   = random.randint(1, num_days)
     random_date = start_date + datetime.timedelta(days=rand_days)

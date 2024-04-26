@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Nový užívateľ</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="meno">Meno: </label> 
+        <input type="text" name="meno">
+        <label for="priezvisko">Priezvisko: </label> 
+        <input type="text" name="priezvisko">
+        <label for="email">Email: </label> 
+        <input type="email" name="email">
+        <label for="datum">Datum: </label> 
+        <input type="date" name="datum">
+        <input type="submit">
+    </form>
+{% endblock content %}
